@@ -29,9 +29,11 @@ def get_messages():
 def send_message():
     sender = request.args["sender"]
     text = request.args["text"]
-    if len(sender) not in range(3,100):
+    # Проверка имени не короче 3-х символов не длинее 100
+    if len(sender) not in range(3,101):
         add_message('<font color="red">SYSTEM</font>', 'Invalid Name')
         return {"result": False, 'Error': 'Invalid Name'}
+    # Проверка сообщения не короче 1-о символа и не длинее 3000
     elif len(text) not in range(1,3001):
         add_message('<font color="red">SYSTEM</font>', 'Invalid Text')
         return {"result": False, 'Error': 'Invalid Text'}
